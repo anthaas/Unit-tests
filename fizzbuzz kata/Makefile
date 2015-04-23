@@ -11,7 +11,7 @@ SRCDIRS=src
 BINDIR=bin
 
 #resulting bin
-TARGET=bin/output
+TARGET=$(BINDIR)/output
 
 C_SRC = $(shell find $(SRCDIRS) -name '*.cpp')
 OBJS = $(addprefix $(OBJDIR)/, $(C_SRC:.cpp=.o))
