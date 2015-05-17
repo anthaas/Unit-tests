@@ -23,7 +23,13 @@ using namespace CppUnit;
 class TestFizzBuzz : public CppUnit::TestFixture
 {
 	CPPUNIT_TEST_SUITE(TestFizzBuzz);
-	CPPUNIT_TEST(testConvert);
+	CPPUNIT_TEST(testOne);
+	CPPUNIT_TEST(testTwo);
+	CPPUNIT_TEST(testThree);
+	CPPUNIT_TEST(testFive);
+	CPPUNIT_TEST(testSix);
+	CPPUNIT_TEST(testSeven);
+	CPPUNIT_TEST(testFifteen);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -31,19 +37,50 @@ public:
 	void tearDown(void);
 
 protected:
-	void testConvert(void);
+	void testOne(void);
+	void testTwo(void);
+	void testThree(void);
+	void testFive(void);
+	void testSix(void);
+	void testSeven(void);
+	void testFifteen(void);
 
 private:
 	FizzBuzz *mTestObj;
 };
 
 /* my tests ------------------------------------- */
-void TestFizzBuzz::testConvert(void)
+void TestFizzBuzz::testOne(void)
 {
 	CPPUNIT_ASSERT((mTestObj->Convert(1).compare("1")) == 0);
 }
 
+void TestFizzBuzz::testTwo(void)
+{
+	CPPUNIT_ASSERT((mTestObj->Convert(2).compare("Fizz")) == 0);
+}
+void TestFizzBuzz::testThree(void)
+{
+	CPPUNIT_ASSERT((mTestObj->Convert(3).compare("Fizz")) == 0);
+}
+void TestFizzBuzz::testFive(void)
+{
+	CPPUNIT_ASSERT((mTestObj->Convert(5).compare("Buzz")) == 0);
+}
+void TestFizzBuzz::testSix(void)
+{
+	CPPUNIT_ASSERT((mTestObj->Convert(6).compare("Fizz")) == 0);
+}
+void TestFizzBuzz::testSeven(void)
+{
+	CPPUNIT_ASSERT((mTestObj->Convert(7).compare("Whiz")) == 0);
+}
+void TestFizzBuzz::testFifteen(void)
+{
+	CPPUNIT_ASSERT((mTestObj->Convert(15).compare("FizzBuzz")) == 0);
+}
 /* -------------------------------- */
+
 void TestFizzBuzz::setUp(void)
 {
 	mTestObj = new FizzBuzz();
