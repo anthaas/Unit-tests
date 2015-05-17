@@ -33,3 +33,6 @@ A number is "Buzz" if it is divisible by 5 or if it has a 5 in it
 #### Stage 4 - new requirement
 A number is "Fizz" if it is divisible by 3 or if it has a 2 in it<br />
 A number is "Whiz" if it is divisible by 7 or if it has a 4 in it
+
+###### Note:
+Anonymous function is used in this solution.
