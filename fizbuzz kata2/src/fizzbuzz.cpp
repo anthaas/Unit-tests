@@ -21,4 +21,3 @@ string FizzBuzz::CheckDictionary(map<int,string> /*, anonymous function */)
 
 	return returnValue;
 }
-
