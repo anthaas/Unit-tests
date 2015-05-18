@@ -6,8 +6,8 @@ string FizzBuzz::Convert(int number)
 	strNumber = to_string(number);
 
 	string ret = string();
-	ret = CheckDictionary(divisionDict, [&](int x, string s) { return number % x == 0; });
-	ret += CheckDictionary(containDict, [&](int x, string s) { return strNumber.find(to_string(x)) != string::npos && ret.find(s) == string::npos; } );
+	ret = CheckDictionary(divisionDict, [&](pair<int, string> p) { return number % p.first == 0; });
+	ret += CheckDictionary(containDict, [&](pair<int, string> p) { return strNumber.find(to_string(p.first)) != string::npos && ret.find(p.second) == string::npos; } );
 
 	if (ret.empty())
 		return strNumber;
@@ -15,11 +15,11 @@ string FizzBuzz::Convert(int number)
 	return ret;
 }
 
-string FizzBuzz::CheckDictionary(map<int,string> dict, function<bool(int, string)> test)
+string FizzBuzz::CheckDictionary(map<int,string> dict, function<bool(pair<int, string>)> test)
 {
 	string returnValue = string();
 	for (auto entry : dict) {
-		if (test(entry.first, entry.second))
+		if (test(entry))
 			returnValue += entry.second;
 	}
 	return returnValue;
