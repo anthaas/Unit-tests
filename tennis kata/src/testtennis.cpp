@@ -14,7 +14,7 @@
 #include <cppunit/XmlOutputter.h>
 #include <netinet/in.h>
 
-#include "Tennis.h"
+#include "tennis.h"
 
 using namespace std;
 using namespace CppUnit;
