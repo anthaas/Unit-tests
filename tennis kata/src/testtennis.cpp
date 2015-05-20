@@ -20,10 +20,14 @@ using namespace std;
 using namespace CppUnit;
 
 /* inicialization -------------------------------- */
-class TestTennis : public CppUnit::TestFixture
+class Tests : public CppUnit::TestFixture
 {
-	CPPUNIT_TEST_SUITE(TestTennis);
+	CPPUNIT_TEST_SUITE(Tests);
+
 	CPPUNIT_TEST(TestNewGame);
+	CPPUNIT_TEST(Test1pointPlayer1_0pointPlayer2);
+	CPPUNIT_TEST(TestDeuce);
+
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -32,29 +36,43 @@ public:
 
 protected:
 	void TestNewGame(void);
+	void Test1pointPlayer1_0pointPlayer2(void);
+	void TestDeuce(void);
 
 private:
-	Game *mTestObj;
+	Game *mygame;
 };
 
 /* my tests ------------------------------------- */
-void TestTennis::TestNewGame(void)
+void Tests::TestNewGame(void)
 {
-	CPPUNIT_ASSERT((mTestObj->GetScore().compare("Love-Love")) == 0);
+	CPPUNIT_ASSERT((mygame->GetScore().compare("Love-Love")) == 0);
+}
+
+void Tests::Test1pointPlayer1_0pointPlayer2(void)
+{
+	mygame->InitializeScore(1,0);
+	CPPUNIT_ASSERT((mygame->GetScore().compare("Fifteen-Love")) == 0);
+}
+
+void Tests::TestDeuce(void)
+{
+	mygame->InitializeScore(3,3);
+	CPPUNIT_ASSERT((mygame->GetScore().compare("Deuce")) == 0);
 }
 /* -------------------------------- */
 
-void TestTennis::setUp(void)
+void Tests::setUp(void)
 {
-	mTestObj = new Game();
+	mygame = new Game();
 }
 
-void TestTennis::tearDown(void)
+void Tests::tearDown(void)
 {
-	delete mTestObj;
+	delete mygame;
 }
 
-CPPUNIT_TEST_SUITE_REGISTRATION( TestTennis );
+CPPUNIT_TEST_SUITE_REGISTRATION( Tests );
 
 int main(int argc, char* argv[])
 {
