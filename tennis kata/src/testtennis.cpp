@@ -26,8 +26,10 @@ class Tests : public CppUnit::TestFixture
 
 	CPPUNIT_TEST(TestNewGame);
 	CPPUNIT_TEST(Test1pointPlayer1_0pointPlayer2);
+	CPPUNIT_TEST(Test2pointPlayer1_3pointPlayer2);
 	CPPUNIT_TEST(TestDeuce);
-
+	CPPUNIT_TEST(TestPlayer1Advantage);
+	CPPUNIT_TEST(TestPlayer2Advantage);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -37,6 +39,9 @@ public:
 protected:
 	void TestNewGame(void);
 	void Test1pointPlayer1_0pointPlayer2(void);
+	void Test2pointPlayer1_3pointPlayer2(void);
+	void TestPlayer1Advantage(void);
+	void TestPlayer2Advantage(void);
 	void TestDeuce(void);
 
 private:
@@ -44,21 +49,41 @@ private:
 };
 
 /* my tests ------------------------------------- */
+void Tests::TestPlayer2Advantage(void)
+{
+	mygame->InitializeScore(3,4);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Advantage Player 2"));
+}
+
+void Tests::TestPlayer1Advantage(void)
+{
+	mygame->InitializeScore(4,3);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Advantage Player 1"));
+}
+
 void Tests::TestNewGame(void)
 {
-	CPPUNIT_ASSERT((mygame->GetScore().compare("Love-Love")) == 0);
+	string msg = "Love-Love";
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), msg);
 }
 
 void Tests::Test1pointPlayer1_0pointPlayer2(void)
 {
 	mygame->InitializeScore(1,0);
-	CPPUNIT_ASSERT((mygame->GetScore().compare("Fifteen-Love")) == 0);
+	string msg = "Fifteen-Love";
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), msg);
 }
 
 void Tests::TestDeuce(void)
 {
 	mygame->InitializeScore(3,3);
 	CPPUNIT_ASSERT((mygame->GetScore().compare("Deuce")) == 0);
+}
+
+void Tests::Test2pointPlayer1_3pointPlayer2(void)
+{
+	mygame->InitializeScore(2,3);
+	CPPUNIT_ASSERT((mygame->GetScore().compare("Thirty-Fourty")) == 0);
 }
 /* -------------------------------- */
 
