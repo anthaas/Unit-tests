@@ -30,6 +30,8 @@ class Tests : public CppUnit::TestFixture
 	CPPUNIT_TEST(TestDeuce);
 	CPPUNIT_TEST(TestPlayer1Advantage);
 	CPPUNIT_TEST(TestPlayer2Advantage);
+	CPPUNIT_TEST(TestPlayer1Wins);
+	CPPUNIT_TEST(TestPlayer2Wins);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -42,13 +44,28 @@ protected:
 	void Test2pointPlayer1_3pointPlayer2(void);
 	void TestPlayer1Advantage(void);
 	void TestPlayer2Advantage(void);
+	void TestPlayer1Wins(void);
+	void TestPlayer2Wins(void);
 	void TestDeuce(void);
+
 
 private:
 	Game *mygame;
 };
 
 /* my tests ------------------------------------- */
+void Tests::TestPlayer1Wins(void)
+{
+	mygame->InitializeScore(4,2);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Player 1 wins"));
+}
+
+void Tests::TestPlayer2Wins(void)
+{
+	mygame->InitializeScore(2,4);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Player 2 wins"));
+}
+
 void Tests::TestPlayer2Advantage(void)
 {
 	mygame->InitializeScore(3,4);
