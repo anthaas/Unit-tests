@@ -63,27 +63,25 @@ void Tests::TestPlayer1Advantage(void)
 
 void Tests::TestNewGame(void)
 {
-	string msg = "Love-Love";
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), msg);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Love-Love"));
 }
 
 void Tests::Test1pointPlayer1_0pointPlayer2(void)
 {
 	mygame->InitializeScore(1,0);
-	string msg = "Fifteen-Love";
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), msg);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Fifteen-Love"));
 }
 
 void Tests::TestDeuce(void)
 {
 	mygame->InitializeScore(3,3);
-	CPPUNIT_ASSERT((mygame->GetScore().compare("Deuce")) == 0);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Deuce"));
 }
 
 void Tests::Test2pointPlayer1_3pointPlayer2(void)
 {
 	mygame->InitializeScore(2,3);
-	CPPUNIT_ASSERT((mygame->GetScore().compare("Thirty-Fourty")) == 0);
+	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Thirty-Fourty"));
 }
 /* -------------------------------- */
 
