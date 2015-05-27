@@ -27,6 +27,7 @@ class Tests : public CppUnit::TestFixture
 	CPPUNIT_TEST(TestNewGame);
 	CPPUNIT_TEST(GetScore_OneZero_FifteenLove);
 	CPPUNIT_TEST(GetScore_TwoThree_ThirtyFourty);
+	CPPUNIT_TEST(GetScore_ThreeThree_Deuce);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -37,6 +38,7 @@ protected:
 	void TestNewGame(void);
 	void GetScore_OneZero_FifteenLove(void);
 	void GetScore_TwoThree_ThirtyFourty(void);
+	void GetScore_ThreeThree_Deuce(void);
 
 private:
 	ScoreBoard *board;
@@ -45,15 +47,19 @@ private:
 /* my tests ------------------------------------- */
 void Tests::TestNewGame(void)
 {
-	CPPUNIT_ASSERT_EQUAL(board->GetScore(0,0), string("Love:Love"));
+	CPPUNIT_ASSERT_EQUAL(string("Love:Love"), board->GetScore(0,0));
 }
 void Tests::GetScore_OneZero_FifteenLove(void)
 {
-	CPPUNIT_ASSERT_EQUAL(board->GetScore(1,0), string("Fifteen:Love"));
+	CPPUNIT_ASSERT_EQUAL(string("Fifteen:Love"), board->GetScore(1,0));
 }
 void Tests::GetScore_TwoThree_ThirtyFourty(void)
 {
-	CPPUNIT_ASSERT_EQUAL(board->GetScore(2,3), string("Thirty:Fourty"));
+	CPPUNIT_ASSERT_EQUAL(string("Thirty:Fourty"), board->GetScore(2,3));
+}
+void Tests::GetScore_ThreeThree_Deuce(void)
+{
+	CPPUNIT_ASSERT_EQUAL(string("Deuce"), board->GetScore(3,3));
 }
 /* -------------------------------- */
 
