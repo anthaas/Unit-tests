@@ -25,13 +25,8 @@ class Tests : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE(Tests);
 
 	CPPUNIT_TEST(TestNewGame);
-	CPPUNIT_TEST(Test1pointPlayer1_0pointPlayer2);
-	CPPUNIT_TEST(Test2pointPlayer1_3pointPlayer2);
-	CPPUNIT_TEST(TestDeuce);
-	CPPUNIT_TEST(TestPlayer1Advantage);
-	CPPUNIT_TEST(TestPlayer2Advantage);
-	CPPUNIT_TEST(TestPlayer1Wins);
-	CPPUNIT_TEST(TestPlayer2Wins);
+	CPPUNIT_TEST(GetScore_OneZero_FifteenLove);
+	CPPUNIT_TEST(GetScore_TwoThree_ThirtyFourty);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -40,76 +35,36 @@ public:
 
 protected:
 	void TestNewGame(void);
-	void Test1pointPlayer1_0pointPlayer2(void);
-	void Test2pointPlayer1_3pointPlayer2(void);
-	void TestPlayer1Advantage(void);
-	void TestPlayer2Advantage(void);
-	void TestPlayer1Wins(void);
-	void TestPlayer2Wins(void);
-	void TestDeuce(void);
-
+	void GetScore_OneZero_FifteenLove(void);
+	void GetScore_TwoThree_ThirtyFourty(void);
 
 private:
-	Game *mygame;
+	ScoreBoard *board;
 };
 
 /* my tests ------------------------------------- */
-void Tests::TestPlayer1Wins(void)
-{
-	mygame->InitializeScore(4,2);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Player 1 wins"));
-}
-
-void Tests::TestPlayer2Wins(void)
-{
-	mygame->InitializeScore(2,4);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Player 2 wins"));
-}
-
-void Tests::TestPlayer2Advantage(void)
-{
-	mygame->InitializeScore(3,4);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Advantage Player 2"));
-}
-
-void Tests::TestPlayer1Advantage(void)
-{
-	mygame->InitializeScore(4,3);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Advantage Player 1"));
-}
-
 void Tests::TestNewGame(void)
 {
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Love-Love"));
+	CPPUNIT_ASSERT_EQUAL(board->GetScore(0,0), string("Love:Love"));
 }
-
-void Tests::Test1pointPlayer1_0pointPlayer2(void)
+void Tests::GetScore_OneZero_FifteenLove(void)
 {
-	mygame->InitializeScore(1,0);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Fifteen-Love"));
+	CPPUNIT_ASSERT_EQUAL(board->GetScore(1,0), string("Fifteen:Love"));
 }
-
-void Tests::TestDeuce(void)
+void Tests::GetScore_TwoThree_ThirtyFourty(void)
 {
-	mygame->InitializeScore(3,3);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Deuce"));
-}
-
-void Tests::Test2pointPlayer1_3pointPlayer2(void)
-{
-	mygame->InitializeScore(2,3);
-	CPPUNIT_ASSERT_EQUAL(mygame->GetScore(), string("Thirty-Fourty"));
+	CPPUNIT_ASSERT_EQUAL(board->GetScore(2,3), string("Thirty:Fourty"));
 }
 /* -------------------------------- */
 
 void Tests::setUp(void)
 {
-	mygame = new Game();
+	board = new ScoreBoard();
 }
 
 void Tests::tearDown(void)
 {
-	delete mygame;
+	delete board;
 }
 
 CPPUNIT_TEST_SUITE_REGISTRATION( Tests );
